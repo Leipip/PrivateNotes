@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class EditNote extends AppCompatActivity {
     Intent data;
-    EditText editNoteTitle,editNoteContent;
+    EditText editNoteTitle,editNoteContent, editNoteTag;
     FirebaseFirestore fStore;
     ProgressBar spinner;
     FirebaseUser user;
@@ -40,17 +40,21 @@ public class EditNote extends AppCompatActivity {
         fStore = fStore.getInstance();
         spinner = findViewById(R.id.progressBar2);
         user = FirebaseAuth.getInstance().getCurrentUser();
+
         data = getIntent();
 
         editNoteContent = findViewById(R.id.editNoteContent);
         editNoteTitle = findViewById(R.id.editNoteTitle);
+        editNoteTag = findViewById(R.id.editNoteTag);
 
 
         String noteTitle = data.getStringExtra("title");
         String noteContent = data.getStringExtra("content");
+        String noteTag = data.getStringExtra("tag");
 
         editNoteTitle.setText(noteTitle);
         editNoteContent.setText(noteContent);
+        editNoteTag.setText(noteTag);
 
         FloatingActionButton fab = findViewById(R.id.saveEditedNote);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +63,7 @@ public class EditNote extends AppCompatActivity {
 
                 String nTitle = editNoteTitle.getText().toString();
                 String nContent = editNoteContent.getText().toString();
+                String nTag = editNoteTag.getText().toString();
 
                 if(nTitle.isEmpty() || nContent.isEmpty()){
                     Toast.makeText(EditNote.this, "Can not Save note with Empty Field.", Toast.LENGTH_SHORT).show();
@@ -70,9 +75,11 @@ public class EditNote extends AppCompatActivity {
                 // save note
 
                 DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("myNotes").document(data.getStringExtra("noteId"));
+
                 Map<String,Object> note = new HashMap<>();
                 note.put("title",nTitle);
                 note.put("content",nContent);
+                note.put("tag",nTag);
 
                 docref.update(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

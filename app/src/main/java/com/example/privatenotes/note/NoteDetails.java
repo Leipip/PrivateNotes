@@ -25,16 +25,20 @@ public class NoteDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         data = getIntent();
 
 
         TextView content = findViewById(R.id.noteDetailsContent);
         TextView title = findViewById(R.id.noteDetailsTitle);
+        TextView tag = findViewById(R.id.noteDetailsTag);
         content.setMovementMethod(new ScrollingMovementMethod());
+
         content.setText(data.getStringExtra("content"));
         title.setText(data.getStringExtra("title"));
+        tag.setText(data.getStringExtra("tag"));
         content.setBackgroundColor(getResources().getColor(data.getIntExtra("code",0),null));
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +47,14 @@ public class NoteDetails extends AppCompatActivity {
                 Intent i = new Intent(view.getContext(),EditNote.class);
                 i.putExtra("title",data.getStringExtra("title"));
                 i.putExtra("content",data.getStringExtra("content"));
+                i.putExtra("tag", data.getStringExtra("tag"));
                 i.putExtra("noteId",data.getStringExtra("noteId"));
                 startActivity(i);
             }
         });
     }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == android.R.id.home){
