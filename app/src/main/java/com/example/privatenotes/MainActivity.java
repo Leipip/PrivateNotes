@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
         Query query = fStore.collection("notes").document(user.getUid()).collection("myNotes").orderBy("title", Query.Direction.DESCENDING);
+        // query notes > uuid > mynotes
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query,Note.class)
                 .build();
@@ -75,22 +76,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
+                noteViewHolder.noteTag.setText(note.getTag());
                 final int code = getRandomColor();
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code,null));
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
-
                 noteViewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(v.getContext(), NoteDetails.class);
                         i.putExtra("title",note.getTitle());
                         i.putExtra("content",note.getContent());
+                        i.putExtra("tag", note.getTag());
                         i.putExtra("code",code);
                         i.putExtra("noteId",docId);
                         v.getContext().startActivity(i);
                     }
                 });
-
                 ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
                 menuIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,15 +105,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 Intent i = new Intent(v.getContext(), EditNote.class);
                                 i.putExtra("title",note.getTitle());
                                 i.putExtra("content",note.getContent());
+                                i.putExtra("tag", note.getTag());
                                 i.putExtra("noteId",docId);
                                 startActivity(i);
                                 return false;
                             }
                         });
-
                         menu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
+
                                 DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("myNotes").document(docId);
                                 docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -128,11 +130,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 return false;
                             }
                         });
-
                         menu.show();
 
                     }
                 });
+
+
+
             }
             @NonNull
             @Override
@@ -165,6 +169,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             username.setText(user.getDisplayName());
         }
 
+
+
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
             }
         });
+
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -192,17 +199,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, "Your Are Connected.", Toast.LENGTH_SHORT).show();
                 }
                 break;
-
             case R.id.logout:
                 checkUser();
                 break;
-
             default:
                 Toast.makeText(this, "Coming soon.", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
-
     private void checkUser() {
         // if user is real or not
         if(user.isAnonymous()){
@@ -210,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(),Splash.class));
+
             overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
         }
     }
@@ -218,32 +223,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog.Builder warning = new AlertDialog.Builder(this)
                 .setTitle("Are you sure ?")
                 .setMessage("You are logged in with Temporary Account. Logging out will Delete All the notes.")
-                .setPositiveButton("Sync Note", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Log in/create account", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getApplicationContext(), Register.class));
+                        startActivity(new Intent(getApplicationContext(),Register.class));
                         finish();
                     }
                 }).setNegativeButton("Logout", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // ToDO: delete all the notes created by the Anon user
-
                         // TODO: delete the anon user
-
                         user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 startActivity(new Intent(getApplicationContext(),Splash.class));
+
                                 overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                             }
                         });
                     }
                 });
-
         warning.show();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -253,12 +255,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.settings){
-            Toast.makeText(this, "Settings Menu is Clicked.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Settings Menu for sort options is Clicked.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
     public class NoteViewHolder extends RecyclerView.ViewHolder{
-        TextView noteTitle,noteContent;
+        TextView noteTitle,noteContent, noteTag;
         View view;
         CardView mCardView;
         public NoteViewHolder(@NonNull View itemView) {
@@ -266,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             noteTitle = itemView.findViewById(R.id.titles);
             noteContent = itemView.findViewById(R.id.content);
             mCardView = itemView.findViewById(R.id.noteCard);
+            noteTag = itemView.findViewById(R.id.tag);
             view = itemView;
         }
     }

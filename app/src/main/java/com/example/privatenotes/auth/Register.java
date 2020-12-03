@@ -33,32 +33,26 @@ public class Register extends AppCompatActivity {
     TextView loginAct;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().setTitle("Connect to FireNotes");
+        getSupportActionBar().setTitle("Connect to PrivateNotes");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         rUserName = findViewById(R.id.userName);
         rUserEmail = findViewById(R.id.userEmail);
         rUserPass = findViewById(R.id.password);
         rUserConfPass = findViewById(R.id.passwordConfirm);
-
         syncAccount = findViewById(R.id.createAccount);
         loginAct = findViewById(R.id.login);
         progressBar = findViewById(R.id.progressBar4);
-
         fAuth = FirebaseAuth.getInstance();
-
         loginAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Login.class));
             }
         });
-
         syncAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,18 +60,14 @@ public class Register extends AppCompatActivity {
                 String uUserEmail = rUserEmail.getText().toString();
                 String uUserPass = rUserPass.getText().toString();
                 String uConfPass = rUserConfPass.getText().toString();
-
                 if(uUserEmail.isEmpty() || uUsername.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty()){
                     Toast.makeText(Register.this, "All Fields Are Required.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 if(!uUserPass.equals(uConfPass)){
                     rUserConfPass.setError("Password Do not Match.");
                 }
-
                 progressBar.setVisibility(View.VISIBLE);
-
                 AuthCredential credential = EmailAuthProvider.getCredential(uUserEmail,uUserPass);
                 fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
@@ -103,18 +93,9 @@ public class Register extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                     }
                 });
-
             }
         });
-
-
-
-
-
-
     }
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         startActivity(new Intent(this, MainActivity.class));

@@ -30,6 +30,21 @@
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
+        android:id="@+id/editNoteTag"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="680dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TextView"
+        android:textColor="#fff"
+        android:textColorHint="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
         android:id="@+id/editNoteContent"
         android:layout_width="0dp"
         android:layout_height="0dp"

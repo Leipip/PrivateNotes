@@ -29,21 +29,25 @@ import  com.example.privatenotes.R;
 
 public class AddNote extends AppCompatActivity {
     FirebaseFirestore fStore;
-    EditText noteTitle,noteContent;
+    EditText noteTitle,noteContent,noteTag;
     ProgressBar progressBarSave;
     FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         fStore = FirebaseFirestore.getInstance();
         noteContent = findViewById(R.id.addNoteContent);
         noteTitle = findViewById(R.id.addNoteTitle);
-
+        noteTag = findViewById(R.id.addNoteTag);
         progressBarSave = findViewById(R.id.progressBar);
+
         user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,21 +55,29 @@ public class AddNote extends AppCompatActivity {
             public void onClick(View view) {
                 String nTitle = noteTitle.getText().toString();
                 String nContent = noteContent.getText().toString();
+                String nTag = noteTag.getText().toString();
+
                 if(nTitle.isEmpty() || nContent.isEmpty()){
                     Toast.makeText(AddNote.this, "Can not Save note with Empty Field.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 progressBarSave.setVisibility(View.VISIBLE);
+
                 // save note
+
                 DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("myNotes").document();
                 Map<String,Object> note = new HashMap<>();
                 note.put("title",nTitle);
                 note.put("content",nContent);
+                note.put("tag", nTag);
+
                 docref.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AddNote.this, "Note Added.", Toast.LENGTH_SHORT).show();
                         onBackPressed();
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

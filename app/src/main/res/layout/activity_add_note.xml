@@ -14,7 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -31,6 +31,17 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
+        <EditText
+            android:id="@+id/addNoteTag"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="label"
+            android:textColor="#fff"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
