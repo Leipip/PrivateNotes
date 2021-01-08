@@ -9,8 +9,6 @@ Java project
 <p align="center">A mobile android notes app built with firebase for server hosting and authentication.</p>
 <div>
  <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_1mainscreen.jpg">
- <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_notesscreen.jpg">
- <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_notesscreen.jpg">
 </div>
 
 ## Features
@@ -29,7 +27,11 @@ Java project
 PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton is not currently on the app sotre and so to to use you'll need to clone a copy of the soiurce files here and run it locally on your computer from andriod studio.
 
 
-
+##ScreeShots
+<div>
+ <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_notesscreen.jpg">
+ <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_login_screen.jpg">
+</div>
 
 
 ### Installation
