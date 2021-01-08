@@ -18,7 +18,6 @@ Java project
 - **Notes Colors**
 - **Labeling note categories**
 - **Add custom title to Notes**
-- **Multi-cursor editing** - supports multiple cursors and other [Codemirror](https://codemirror.net/) options
 - **Login into the application from any android deivce, all user account data stored on server**
 
 
