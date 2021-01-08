@@ -2,7 +2,7 @@
 Java project
 
 <p align="center">
- <img src="https://img.shields.io/badge/License-MIT-blue.svg">
+ <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 55vw; min-width: 330px;">
  </p>
    
 
