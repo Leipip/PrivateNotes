@@ -23,14 +23,9 @@ Java project
 
 ## About
 
-TakeNote is a note-taking app for the web. You can use the demo app at [takenote.dev](https://takenote.dev). It is a static site without a database and does not sync your notes to the cloud. The notes are persisted temporarily in local storage, but you can download all notes in markdown format as a zip.
+PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton is not currently on the app sotre and so to to use you'll need to clone a copy of the soiurce files here and run it locally on your computer from andriod studio.
 
 
-
-
-
-
-## Installation
 
 
 
