@@ -6,7 +6,7 @@ Java project
  </p>
    
 
-<p align="center">A mobile android notes app built with firebase for server hosting and authentication.(Demo)</p>
+<p align="center">A mobile android notes app built with firebase for server hosting and authentication.</p>
 
 ![Screenshot](./assets/takenote-light.png)
 
