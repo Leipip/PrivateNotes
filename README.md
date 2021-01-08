@@ -31,10 +31,11 @@ PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton i
 ## Installation
 
 ```bash
-git clone git@github.com:taniarascia/takenote
-cd takenote
-npm i
+git clone git@github.com:leightonoff/PrivateNotes.git
 ```
+- Open the project in Android Studio & 'Sync with file system'
+
+
 
 
 
