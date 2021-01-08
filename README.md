@@ -33,7 +33,7 @@ PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton i
 ```bash
 git clone git@github.com:leightonoff/PrivateNotes.git
 ```
-- Open the project in Android Studio & 'Sync with file system'
+Open the project in Android Studio & 'Sync with file system'
 
 
 
