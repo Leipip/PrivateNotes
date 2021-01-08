@@ -25,7 +25,7 @@ Java project
 
 ## About
 
-PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton is not currently on the app sotre and so to to use you'll need to clone a copy of the soiurce files here and run it locally on your computer from andriod studio.
+PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton is not currently on the app store and so to use it you'll need to clone a copy of the source code here and run it locally on your computer from Android Studio.
 
 
 ## Installation
