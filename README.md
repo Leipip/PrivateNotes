@@ -2,7 +2,7 @@
 Java project
 
 <p align="center">
- <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_mainscreen.jpg">
+ <img src="https://img.shields.io/badge/License-MIT-blue.svg">
  </p>
    
 
