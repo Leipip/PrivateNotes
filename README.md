@@ -7,9 +7,11 @@ Java project
    
 
 <p align="center">A mobile android notes app built with firebase for server hosting and authentication.</p>
-
+<div>
  <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_1mainscreen.jpg">
+  <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_1mainscreen.jpg">
 
+</div>
 
 ## Features
 
