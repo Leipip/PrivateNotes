@@ -8,7 +8,8 @@ Java project
 
 <p align="center">A mobile android notes app built with firebase for server hosting and authentication.</p>
 
-![Screenshot](./assets/takenote-light.png)
+ <img src="https://github.com/leightonoff/PrivateNotes/blob/master/Mainscreen.jpg">
+
 
 ## Features
 
