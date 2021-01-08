@@ -27,13 +27,6 @@ Java project
 PrivateNotes is a note-taking app for andriod mobile deivces. This applicaiton is not currently on the app sotre and so to to use you'll need to clone a copy of the soiurce files here and run it locally on your computer from andriod studio.
 
 
-##ScreeShots
-<div>
- <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_notesscreen.jpg">
- <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_login_screen.jpg">
-</div>
-
-
 ### Installation
 
 ```bash
@@ -42,10 +35,14 @@ cd takenote
 npm i
 ```
 
+## ScreenShots
 
-## Contributing
+<div>
+ <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_login_screen.jpg">
+ <img src="https://github.com/leightonoff/PrivateNotes/blob/master/rsz_notesscreen.jpg">
+</div>
 
-PrivateNote is an open source project, and contributions of any kind are welcome and appreciated.
+
 
 
 ## Contributors
