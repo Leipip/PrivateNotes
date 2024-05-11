@@ -43,7 +43,7 @@ Open the project in Android Studio & 'Sync with file system'
 
 <table>
   <tr>
-    <td>Leighton Cotterell</td>
+    <td>Leipip</td>
   </tr>
   
 </table>
@@ -52,4 +52,4 @@ Open the project in Android Studio & 'Sync with file system'
 
 ## Author
 
-- Leighton Cotterell
+- Leipip
